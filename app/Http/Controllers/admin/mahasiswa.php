@@ -14,6 +14,14 @@ class mahasiswa extends Controller
         return view('admin.mahasiswa.daftar-mhs', compact('mahasiswas'));
     }
 
+    public function delete($id)
+    {
+        $mahasiswa = ModelMahsiswa::findOrFail($id);
+        $mahasiswa->delete();
+
+        return redirect()->route('admin.mahasiswa.daftar-mhs')->with('success', 'Mahasiswa berhasil dihapus.');
+    }
+
     public function create()
     {
         return view('admin.mahasiswa.create-mhs');
